@@ -5,6 +5,7 @@ import pdb
 import cv2
 import numpy as np
 import pprint
+import pickle
 
 from sklearn.model_selection import ParameterGrid, StratifiedKFold
 from sklearn.base import BaseEstimator, ClassifierMixin
@@ -17,6 +18,15 @@ from keras.models import load_model
 from keras.layers import Conv3D, MaxPool3D, Flatten, Dense
 from keras.layers import Dropout, Input, BatchNormalization
 from keras.losses import binary_crossentropy
+
+all_batches = 4
+all_epochs  = 50
+
+X_train_ori_name = './nparrays/wnw/train_gray_X_100.npy'
+y_train_ori_name = './nparrays/wnw/train_gray_y_100.npy'
+X_test_name = './nparrays/wnw/test_gray_X_200.npy'
+y_test_name = './nparrays/wnw/test_gray_y_200.npy'
+model_name  = 'best_model_gray_100_bn.h5'
 
 
 class SampleDNN:
@@ -88,14 +98,15 @@ class SampleDNN:
         """
         input_layer = Input(self.input_size_)
         ## convolutional layers
-        conv_layer = Conv3D(filters     = self.num_first_filters_, 
-                            kernel_size = self.kernel_size_, 
-                            activation  = 'relu',
-                            data_format = "channels_last")(input_layer)
-        pool_layer = MaxPool3D(pool_size= self.pool_size_,
-                               data_format="channels_last")(conv_layer)
+        #conv_layer = Conv3D(filters     = self.num_first_filters_, 
+                            #kernel_size = self.kernel_size_, 
+                            #activation  = 'relu',
+                            #data_format = "channels_last")(input_layer)
+        #pool_layer = MaxPool3D(pool_size= self.pool_size_,
+                               #data_format="channels_last")(conv_layer)
+        pool_layer = input_layer
   
-        for i in range(self.num_conv_nets_ - 1):
+        for i in range(self.num_conv_nets_):
             conv_layer = Conv3D(filters     = self.num_first_filters_, 
                                 kernel_size= self.kernel_size_, 
                                 activation='relu',
@@ -103,9 +114,10 @@ class SampleDNN:
             pool_layer = MaxPool3D(pool_size= self.pool_size_,
                                    data_format="channels_last")(conv_layer)
 
+            pool_layer    = BatchNormalization()(pool_layer)
 
         ## perform batch normalization on the convolution outputs before feeding it to MLP architecture
-        pool_layer    = BatchNormalization()(pool_layer)
+        #pool_layer    = BatchNormalization()(pool_layer)
         flatten_layer = Flatten()(pool_layer)
 
         ## create an MLP architecture with dense layers : 4096 -> 512 -> 10
@@ -253,23 +265,20 @@ def nested_cv(X, y,
     
 
 
-X_train_ori = np.load('./nparrays/wnw/train_flow_X_30.npy')
-y_train_ori = np.load('./nparrays/wnw/train_flow_y_30.npy')
+X_train_ori = np.load(X_train_ori_name)
+y_train_ori = np.load(y_train_ori_name)
 
 # `in_size` for 
 #     1. writing no writing uv np arrays = (89,  100, 100, 2)
 #     2. talking no talking uv np arrays = (299, 100, 100, 2)
 #     3. writing no writing gray np arrays = (90,  100, 100, 1)
 #     4. talking no talking gray np arrays = (300,  100, 100, 1)
-in_size       = [(89,50,50,2)]
+in_size       = [X_train_ori.shape[1:]]
 num_first_fil = [2,4]
 num_convnets  = [2,3]
 param_grid = {"input_size": in_size,
               "num_first_filters": num_first_fil,
               "num_conv_nets":num_convnets}
-
-all_batches = 10
-all_epochs  = 10
 
 train_results = nested_cv(X_train_ori, y_train_ori,   StratifiedKFold(3), 
                           StratifiedKFold(3), SampleDNN, 
@@ -320,17 +329,19 @@ best_dnn = SampleDNN(**best_of_all_params)
 print(best_dnn)
 
 keras_model = best_dnn.model_
-keras_model.fit(X_train_ori, y_train_ori, epochs=all_epochs, batch_size=all_batches,verbose=0)
-keras_model.save("best_model_flow.h5")
+history = keras_model.fit(X_train_ori, y_train_ori, epochs=all_epochs, batch_size=all_batches,verbose=0)
+keras_model.save(model_name)
+with open(model_name + ".pickle", 'wb') as file_pi:
+        pickle.dump(history.history, file_pi)
 # Delete the existing model.
 del keras_model
 
 
 
 # TESTING PHASE
-X_test = np.load('./nparrays/wnw/test_flow_X_30.npy')
-y_test = np.load('./nparrays/wnw/test_flow_y_30.npy')
-model  = load_model('best_model_flow.h5')
+X_test = np.load(X_test_name)
+y_test = np.load(y_test_name)
+model  = load_model(model_name)
 y_pred = 1*(model.predict(X_test) > 0.5)
 y_pred = y_pred.flatten()
 conf_matrix = confusion_matrix(y_test,y_pred)
