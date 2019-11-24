@@ -18,7 +18,7 @@ from sklearn.utils import shuffle
 from sklearn.model_selection import train_test_split
 
 
-num_samples = 100
+num_samples = 20
 SAVE_TALKING_GRAY = True
 SAVE_TALKING_FLOW = False
 

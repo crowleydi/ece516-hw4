@@ -21,11 +21,17 @@ all_epochs  = 50
 from classifiers import PyramidDNN, InvPyramidDNN, SingleDNN, nested_cv
 dnn = SingleDNN
 
-X_train_ori_name = './nparrays/wnw/train_flow_X_100.npy'
-y_train_ori_name = './nparrays/wnw/train_flow_y_100.npy'
-X_test_name = './nparrays/wnw/test_flow_X_200.npy'
-y_test_name = './nparrays/wnw/test_flow_y_200.npy'
-model_name  = 'best_model_wnw_single_of.h5'
+#X_train_ori_name = './nparrays/wnw/train_flow_X_100.npy'
+#y_train_ori_name = './nparrays/wnw/train_flow_y_100.npy'
+#X_test_name = './nparrays/wnw/test_flow_X_200.npy'
+#y_test_name = './nparrays/wnw/test_flow_y_200.npy'
+#model_name  = 'best_model_wnw_single_of.h5'
+
+X_train_ori_name = './nparrays/tnt/train_flow_X_20.npy'
+y_train_ori_name = './nparrays/tnt/train_flow_y_20.npy'
+X_test_name = './nparrays/tnt/test_flow_X_20.npy'
+y_test_name = './nparrays/tnt/test_flow_y_20.npy'
+model_name  = 'best_model_tnt_single_of.h5'
 
 X_train_ori = np.load(X_train_ori_name)
 y_train_ori = np.load(y_train_ori_name)

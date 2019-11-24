@@ -21,11 +21,17 @@ all_epochs  = 50
 from classifiers import PyramidDNN, InvPyramidDNN, SingleDNN, nested_cv
 dnn = InvPyramidDNN
 
-X_train_ori_name = './nparrays/wnw/train_gray_X_100.npy'
-y_train_ori_name = './nparrays/wnw/train_gray_y_100.npy'
-X_test_name = './nparrays/wnw/test_gray_X_200.npy'
-y_test_name = './nparrays/wnw/test_gray_y_200.npy'
-model_name  = 'best_model_wnw_invpyramid.h5'
+#X_train_ori_name = './nparrays/wnw/train_gray_X_100.npy'
+#y_train_ori_name = './nparrays/wnw/train_gray_y_100.npy'
+#X_test_name = './nparrays/wnw/test_gray_X_200.npy'
+#y_test_name = './nparrays/wnw/test_gray_y_200.npy'
+#model_name  = 'best_model_wnw_invpyramid.h5'
+
+X_train_ori_name = './nparrays/tnt/train_gray_X_20.npy'
+y_train_ori_name = './nparrays/tnt/train_gray_y_20.npy'
+X_test_name = './nparrays/tnt/test_gray_X_20.npy'
+y_test_name = './nparrays/tnt/test_gray_y_20.npy'
+model_name  = 'best_model_tnt_invpyramid.h5'
 
 X_train_ori = np.load(X_train_ori_name)
 y_train_ori = np.load(y_train_ori_name)
