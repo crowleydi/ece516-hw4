@@ -1,0 +1,282 @@
+Outer split: 1/3
+	Parameter : 1/4
+	 {'input_size': (300, 100, 100, 1), 'num_conv_nets': 2, 'num_first_filters': 8}
+		Inner split: 1/3, 60 sec
+		Inner split: 2/3, 55 sec
+		Inner split: 3/3, 55 sec
+		Mean loss :21.074632743994396
+		Mean Metric:0.7658730149269104
+	Parameter : 2/4
+	 {'input_size': (300, 100, 100, 1), 'num_conv_nets': 2, 'num_first_filters': 4}
+		Inner split: 1/3, 44 sec
+		Inner split: 2/3, 40 sec
+		Inner split: 3/3, 37 sec
+		Mean loss :7.708261330922444
+		Mean Metric:0.5039682586987814
+	Parameter : 3/4
+	 {'input_size': (300, 100, 100, 1), 'num_conv_nets': 3, 'num_first_filters': 8}
+		Inner split: 1/3, 47 sec
+		Inner split: 2/3, 50 sec
+		Inner split: 3/3, 53 sec
+		Mean loss :1.5277256568272908
+		Mean Metric:0.7797619104385376
+	Parameter : 4/4
+	 {'input_size': (300, 100, 100, 1), 'num_conv_nets': 3, 'num_first_filters': 4}
+		Inner split: 1/3, 33 sec
+		Inner split: 2/3, 37 sec
+		Inner split: 3/3, 39 sec
+		Mean loss :1.0842011372248332
+		Mean Metric:0.7103174726168314
+	Training on best prameters
+	Loss:1.86701238155365
+	Metric:0.6363636255264282
+Outer split: 2/3
+	Parameter : 1/4
+	 {'input_size': (300, 100, 100, 1), 'num_conv_nets': 2, 'num_first_filters': 8}
+		Inner split: 1/3, 46 sec
+		Inner split: 2/3, 49 sec
+		Inner split: 3/3, 55 sec
+		Mean loss :5.777930895487468
+		Mean Metric:0.6686508059501648
+	Parameter : 2/4
+	 {'input_size': (300, 100, 100, 1), 'num_conv_nets': 2, 'num_first_filters': 4}
+		Inner split: 1/3, 33 sec
+		Inner split: 2/3, 36 sec
+		Inner split: 3/3, 38 sec
+		Mean loss :1.418140985071659
+		Mean Metric:0.7797619104385376
+	Parameter : 3/4
+	 {'input_size': (300, 100, 100, 1), 'num_conv_nets': 3, 'num_first_filters': 8}
+		Inner split: 1/3, 46 sec
+		Inner split: 2/3, 50 sec
+		Inner split: 3/3, 54 sec
+		Mean loss :1.162614365418752
+		Mean Metric:0.738095243771871
+	Parameter : 4/4
+	 {'input_size': (300, 100, 100, 1), 'num_conv_nets': 3, 'num_first_filters': 4}
+		Inner split: 1/3, 34 sec
+		Inner split: 2/3, 36 sec
+		Inner split: 3/3, 39 sec
+		Mean loss :0.8276598453521729
+		Mean Metric:0.738095243771871
+	Training on best prameters
+	Loss:1.4144885540008545
+	Metric:0.8181818127632141
+Outer split: 3/3
+	Parameter : 1/4
+	 {'input_size': (300, 100, 100, 1), 'num_conv_nets': 2, 'num_first_filters': 8}
+		Inner split: 1/3, 50 sec
+		Inner split: 2/3, 54 sec
+		Inner split: 3/3, 54 sec
+		Mean loss :8.630064448962608
+		Mean Metric:0.7321428656578064
+	Parameter : 2/4
+	 {'input_size': (300, 100, 100, 1), 'num_conv_nets': 2, 'num_first_filters': 4}
+		Inner split: 1/3, 37 sec
+		Inner split: 2/3, 39 sec
+		Inner split: 3/3, 39 sec
+		Mean loss :10.165547649065653
+		Mean Metric:0.6428571542104086
+	Parameter : 3/4
+	 {'input_size': (300, 100, 100, 1), 'num_conv_nets': 3, 'num_first_filters': 8}
+		Inner split: 1/3, 51 sec
+		Inner split: 2/3, 54 sec
+		Inner split: 3/3, 54 sec
+		Mean loss :0.8701512813568115
+		Mean Metric:0.6845238208770752
+	Parameter : 4/4
+	 {'input_size': (300, 100, 100, 1), 'num_conv_nets': 3, 'num_first_filters': 4}
+		Inner split: 1/3, 37 sec
+		Inner split: 2/3, 39 sec
+		Inner split: 3/3, 39 sec
+		Mean loss :0.9360139469305674
+		Mean Metric:0.6904761989911398
+	Training on best prameters
+	Loss:3.224520206451416
+	Metric:0.4000000059604645
+{   'best_params': [   {   'input_size': (300, 100, 100, 1),
+                           'num_conv_nets': 3,
+                           'num_first_filters': 8},
+                       {   'input_size': (300, 100, 100, 1),
+                           'num_conv_nets': 2,
+                           'num_first_filters': 4},
+                       {   'input_size': (300, 100, 100, 1),
+                           'num_conv_nets': 2,
+                           'num_first_filters': 8}],
+    'test_loss': [1.86701238155365, 1.4144885540008545, 3.224520206451416],
+    'test_metric': [0.6363636255264282, 0.8181818127632141, 0.4000000059604645],
+    'train_history': [   {   'cv_loss': [   15.754526138305664,
+                                            47.20484161376953,
+                                            0.2645304799079895],
+                             'cv_metric': [   0.75,
+                                              0.7142857313156128,
+                                              0.8333333134651184],
+                             'cv_params': {   'input_size': (300, 100, 100, 1),
+                                              'num_conv_nets': 2,
+                                              'num_first_filters': 8},
+                             'mean_loss': 21.074632743994396,
+                             'mean_metric': 0.7658730149269104,
+                             'train_best_mean_loss': 21.074632743994396,
+                             'train_best_mean_metric': 0.7658730149269104},
+                         {   'cv_loss': [   2.905846118927002,
+                                            14.876944541931152,
+                                            5.34199333190918],
+                             'cv_metric': [   0.75,
+                                              0.4285714328289032,
+                                              0.3333333432674408],
+                             'cv_params': {   'input_size': (300, 100, 100, 1),
+                                              'num_conv_nets': 2,
+                                              'num_first_filters': 4},
+                             'mean_loss': 7.708261330922444,
+                             'mean_metric': 0.5039682586987814,
+                             'train_best_mean_loss': 21.074632743994396,
+                             'train_best_mean_metric': 0.7658730149269104},
+                         {   'cv_loss': [   1.630082607269287,
+                                            2.663912057876587,
+                                            0.28918230533599854],
+                             'cv_metric': [0.625, 0.7142857313156128, 1.0],
+                             'cv_params': {   'input_size': (300, 100, 100, 1),
+                                              'num_conv_nets': 3,
+                                              'num_first_filters': 8},
+                             'mean_loss': 1.5277256568272908,
+                             'mean_metric': 0.7797619104385376,
+                             'train_best_mean_loss': 1.5277256568272908,
+                             'train_best_mean_metric': 0.7797619104385376},
+                         {   'cv_loss': [   1.0727379322052002,
+                                            1.8016462326049805,
+                                            0.37821924686431885],
+                             'cv_metric': [   0.75,
+                                              0.7142857313156128,
+                                              0.6666666865348816],
+                             'cv_params': {   'input_size': (300, 100, 100, 1),
+                                              'num_conv_nets': 3,
+                                              'num_first_filters': 4},
+                             'mean_loss': 1.0842011372248332,
+                             'mean_metric': 0.7103174726168314,
+                             'train_best_mean_loss': 1.5277256568272908,
+                             'train_best_mean_metric': 0.7797619104385376},
+                         {   'cv_loss': [   0.6823761463165283,
+                                            13.428751945495605,
+                                            3.2226645946502686],
+                             'cv_metric': [   0.625,
+                                              0.7142857313156128,
+                                              0.6666666865348816],
+                             'cv_params': {   'input_size': (300, 100, 100, 1),
+                                              'num_conv_nets': 2,
+                                              'num_first_filters': 8},
+                             'mean_loss': 5.777930895487468,
+                             'mean_metric': 0.6686508059501648,
+                             'train_best_mean_loss': 5.777930895487468,
+                             'train_best_mean_metric': 0.6686508059501648},
+                         {   'cv_loss': [   0.6663191914558411,
+                                            3.4782674312591553,
+                                            0.10983633249998093],
+                             'cv_metric': [0.625, 0.7142857313156128, 1.0],
+                             'cv_params': {   'input_size': (300, 100, 100, 1),
+                                              'num_conv_nets': 2,
+                                              'num_first_filters': 4},
+                             'mean_loss': 1.418140985071659,
+                             'mean_metric': 0.7797619104385376,
+                             'train_best_mean_loss': 1.418140985071659,
+                             'train_best_mean_metric': 0.7797619104385376},
+                         {   'cv_loss': [   1.6428987979888916,
+                                            1.5796078443527222,
+                                            0.26533645391464233],
+                             'cv_metric': [0.5, 0.7142857313156128, 1.0],
+                             'cv_params': {   'input_size': (300, 100, 100, 1),
+                                              'num_conv_nets': 3,
+                                              'num_first_filters': 8},
+                             'mean_loss': 1.162614365418752,
+                             'mean_metric': 0.738095243771871,
+                             'train_best_mean_loss': 1.418140985071659,
+                             'train_best_mean_metric': 0.7797619104385376},
+                         {   'cv_loss': [   1.2431676387786865,
+                                            1.0348039865493774,
+                                            0.2050079107284546],
+                             'cv_metric': [0.5, 0.7142857313156128, 1.0],
+                             'cv_params': {   'input_size': (300, 100, 100, 1),
+                                              'num_conv_nets': 3,
+                                              'num_first_filters': 4},
+                             'mean_loss': 0.8276598453521729,
+                             'mean_metric': 0.738095243771871,
+                             'train_best_mean_loss': 1.418140985071659,
+                             'train_best_mean_metric': 0.7797619104385376},
+                         {   'cv_loss': [   12.556689262390137,
+                                            13.299656867980957,
+                                            0.03384721651673317],
+                             'cv_metric': [0.625, 0.5714285969734192, 1.0],
+                             'cv_params': {   'input_size': (300, 100, 100, 1),
+                                              'num_conv_nets': 2,
+                                              'num_first_filters': 8},
+                             'mean_loss': 8.630064448962608,
+                             'mean_metric': 0.7321428656578064,
+                             'train_best_mean_loss': 8.630064448962608,
+                             'train_best_mean_metric': 0.7321428656578064},
+                         {   'cv_loss': [   15.955301284790039,
+                                            13.322265625,
+                                            1.2190760374069214],
+                             'cv_metric': [   0.5,
+                                              0.5714285969734192,
+                                              0.8571428656578064],
+                             'cv_params': {   'input_size': (300, 100, 100, 1),
+                                              'num_conv_nets': 2,
+                                              'num_first_filters': 4},
+                             'mean_loss': 10.165547649065653,
+                             'mean_metric': 0.6428571542104086,
+                             'train_best_mean_loss': 8.630064448962608,
+                             'train_best_mean_metric': 0.7321428656578064},
+                         {   'cv_loss': [   0.951175332069397,
+                                            1.4814786911010742,
+                                            0.17779982089996338],
+                             'cv_metric': [   0.625,
+                                              0.5714285969734192,
+                                              0.8571428656578064],
+                             'cv_params': {   'input_size': (300, 100, 100, 1),
+                                              'num_conv_nets': 3,
+                                              'num_first_filters': 8},
+                             'mean_loss': 0.8701512813568115,
+                             'mean_metric': 0.6845238208770752,
+                             'train_best_mean_loss': 8.630064448962608,
+                             'train_best_mean_metric': 0.7321428656578064},
+                         {   'cv_loss': [   1.574165940284729,
+                                            0.9799095988273621,
+                                            0.2539663016796112],
+                             'cv_metric': [   0.5,
+                                              0.7142857313156128,
+                                              0.8571428656578064],
+                             'cv_params': {   'input_size': (300, 100, 100, 1),
+                                              'num_conv_nets': 3,
+                                              'num_first_filters': 4},
+                             'mean_loss': 0.9360139469305674,
+                             'mean_metric': 0.6904761989911398,
+                             'train_best_mean_loss': 8.630064448962608,
+                             'train_best_mean_metric': 0.7321428656578064}]}
+
+
+
+Cross-validation scores: [0.63636363 0.81818181 0.40000001]
+Min value = 0.40, Max value = 0.82, Mean = 0.62
+
+7/7 [==============================] - 0s 47ms/step
+
+7/7 [==============================] - 0s 32ms/step
+
+7/7 [==============================] - 0s 44ms/step
+
+============== BEST OF ALL =============
+{'input_size': (300, 100, 100, 1), 'num_conv_nets': 2, 'num_first_filters': 8}
+Best of all loss: 0.31187453866004944
+Best of all metric: 0.8571428656578064
+========================================
+
+Training on entire training set with best of all parameters
+Architecture:
+    Input size = (300, 100, 100, 1)    Number of first filters = 8    Number of ConvNets = 2
+
+ Accuracy on test set: 0.875
+[[3 0]
+ [1 4]]
+
+Accuracy on train set: 1.0
+[[14  0]
+ [ 0 11]]
