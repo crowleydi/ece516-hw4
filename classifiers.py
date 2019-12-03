@@ -6,6 +6,7 @@ from keras.models import Model
 from keras.layers import Conv3D, MaxPool3D, Flatten, Dense
 from keras.layers import Dropout, Input, BatchNormalization
 from keras.losses import binary_crossentropy
+#from keras.utils import multi_gpu_model
 
 class BaseDNN:
     """
@@ -97,6 +98,7 @@ class SampleDNN(BaseDNN):
         output_layer = Dense(units=1, activation='sigmoid')(dense_layer1)
         
         self.model = Model(inputs=input_layer, outputs=output_layer)
+        #self.model = multi_gpu_model(self.model, gpus=2)
         self.model.compile(loss=binary_crossentropy,
                 optimizer='sgd', metrics=['acc'])
         
