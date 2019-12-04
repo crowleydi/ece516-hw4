@@ -19,8 +19,8 @@ from sklearn.model_selection import train_test_split
 
 
 num_samples = 20
-SAVE_TALKING_GRAY = True
-SAVE_TALKING_FLOW = False
+SAVE_TALKING_GRAY = False
+SAVE_TALKING_FLOW = True
 
 SAVE_WRITING_GRAY = False
 SAVE_WRITING_FLOW = False
@@ -90,7 +90,7 @@ def videosdir_2_flow_np(fpath, y_label, num_samples):
     """
     # Getting trimmed video properties
     file_names            = os.listdir(fpath)
-    file_names            = sample(file_names,num_samples)
+    file_names            = sample(file_names,min(len(file_names),num_samples))
     vid                   = cv2.VideoCapture(fpath+file_names[0])
     num_frms              = int(vid.get(cv2.CAP_PROP_FRAME_COUNT))
     ret, frm              = vid.read()
@@ -155,7 +155,21 @@ if SAVE_TALKING_GRAY:
 
 # Creating talking and no talking Flow arrays 
 if SAVE_TALKING_FLOW:
-    print("Nothing here")
+    t_path  = './videos/talking/'
+    nt_path = './videos/no_talking/'
+
+    X_talk, y_talk     = videosdir_2_flow_np(t_path,1,num_samples)
+    X_notalk, y_notalk = videosdir_2_flow_np(nt_path,0,num_samples)
+    X                  = np.concatenate((X_talk, X_notalk), axis=0)
+    y                  = np.concatenate((y_talk, y_notalk), axis=0)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, 
+                                                        test_size=0.2, 
+                                                        random_state=19)
+    np.save('./nparrays/tnt/train_flow_X_' + str(num_samples), X_train)
+    np.save('./nparrays/tnt/train_flow_y_' + str(num_samples), y_train)
+    np.save('./nparrays/tnt/test_flow_X_'  + str(num_samples), X_test)
+    np.save('./nparrays/tnt/test_flow_y_'  + str(num_samples), y_test)
+
 
 
 # Creating writing and no writing Gray numpy arrays for all the videos
