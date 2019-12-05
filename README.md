@@ -205,6 +205,8 @@ It was difficult to get good results on the tnt data set. Almost all models prod
 
 The wnw dataset produced consistent results for me (maybe the additional BatchNormalization layer helped?) as I was always able to get a stable result.
 
+It is also obvious that 50 epochs was way too many as most of the networks converged after only about 20, maybe 25 epochs.I wish I had looked at those graphs earlier in the process and I could have used the CPU/GPU cycles better.
+
 Given more memory and GPU power, I think it would be interesting to try different 3D kernel sizes (3x3x3, 4x4x4, or even something like 2x2x3) along with more convolutional layers/units. To reduce the number of parameters (especially for the tnt dataset) it would also be interesting to introduce a stride size of 2 or 3.
 
 The summary for all models can be seen in [models.txt](models.txt).
