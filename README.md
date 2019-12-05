@@ -1,6 +1,14 @@
 # ECE 516 Homework 4 - Video Activity Recognition
 
+The convolutional layers used were nearly identical to the example code initially provided except
+I added a BatchNormalization at the end so each convolutional unit was comprised of a 
+Conv3D, MaxPooling, and BatchNormalization. All models used the default convolution kernel size of 2x2x2. 
+
 ## Training and Model Parameters - Talking/No-Talking (tnt)
+
+The size of the provided tnt videos were 100x100 so it was much harder with the available hardware
+available (even on Xena) get good results as often time there were memory issues. I had trouble getting good
+results for most of the tnt models.
 
 ### Inverse Pyramid
 ```
@@ -22,6 +30,8 @@ Total params: 21,823,855
 ```
 ![Inverse Pyramid learning](best_model_tnt_invpyramid.h5.png)
 
+Nearly 22 million parameters but useless...
+
 ### Pyramid
 ```
 ============== BEST OF ALL =============
@@ -41,6 +51,7 @@ Accuracy on train set: 1.0
 Total params: 21,824,125
 ```
 ![Pyramid learning](best_model_tnt_pyramid.h5.png)
+Pretty good results with the Pyramid! 87.5% accurate on the test set.
 
 ### Single
 ```
@@ -62,6 +73,15 @@ Total params: 91,584,027
 ```
 ![Single learning](best_model_tnt_single.h5.png)
 
+Nearly 92 million parameters(!!) but garbage.
+
+The output from the convolutional layer is 149x49x49x2 which is flattened and then fed into a dense layer
+with 128 elements. This alone requires 128\*(149\*49\*49\*2+1)=91,583,872 parameters!
+
+The number of parameters is high because each of the convolutional units has a MaxPooling layer which
+reduces the input size but because we only use a single layer so there are roughly 4x as many parameters as the
+above two pyramid networks which contain 2 convolution units.
+
 ### Single/Optical Flow
 ```
 ============== BEST OF ALL =============
@@ -82,7 +102,12 @@ Total params: 91,584,043
 ```
 ![Single Optical Flow learning](best_model_tnt_single_of.h5.png)
 
+Same as above. Nearly 92 million parameters(!!) but garbage.
+
 ## Training and Model Parameters - Writing/No-Writing (wnw)
+
+All models used the default convolution kernel size of 2x2x2. All models produced result greater than 92.5%
+on the test set except for the model which used optical flow which only achieved an accuracy of 81.25%.
 
 ### Inverse Pyramid
 ```
@@ -104,6 +129,8 @@ Accuracy on train set: 1.0
 ```
 ![Inverse Pyramid learning](best_model_wnw_invpyramid.h5.png)
 
+Great results with just over 500,000 parameters!
+
 ### Pyramid
 ```
 ============== BEST OF ALL =============
@@ -123,6 +150,8 @@ Accuracy on train set: 1.0
 Total params: 1,301,629
 ```
 ![Pyramid learning](best_model_wnw_pyramid.h5.png)
+
+Another really good result with only 1.3 million parameters.
 
 ### Single
 ```
@@ -144,6 +173,8 @@ Total params: 12,976,437
 ```
 ![Single learning](best_model_wnw_single.h5.png)
 
+Good result but nearly 13 million parameters, 10x as the previous model!
+
 ### Single (Optical Flow)
 ```
 ============== BEST OF ALL =============
@@ -164,5 +195,16 @@ Total params: 6,488,363
 ```
 ![Single optical-flow learning](best_model_wnw_single_of.h5.png)
 
+About 6.5 million parameters. Fewer parameters than the previous result but the results aren't as good! The
+only difference between the above two models is one takes the optical flow data for input. I think this pretty clearly
+shows that using optical flow reduces accuracy.
 
 # Conclusion
+
+It was difficult to get good results on the tnt data set. Almost all models produced an unstable model that produced a "nan" result.
+
+The wnw dataset produced consistent results for me (maybe the additional BatchNormalization layer helped?) as I was always able to get a stable result.
+
+Given more memory and GPU power, I think it would be interesting to try different 3D kernel sizes (3x3x3, 4x4x4, or even something like 2x2x3) along with more convolutional layers/units. To reduce the number of parameters (especially for the tnt dataset) it would also be interesting to introduce a stride size of 2 or 3.
+
+The summary for all models can be seen in [models.txt](models.txt).
